@@ -332,6 +332,7 @@ void PDOMapper::read(LayerStatus &status){
 bool PDOMapper::write(){
     boost::mutex::scoped_lock lock(mutex_);
     for(auto it = tpdos_.begin(); it != tpdos_.end(); ++it){
+        std::this_thread::sleep_for(std::chrono::microseconds(200));
         (*it)->sync();
     }
     return true; // TODO: check for errors

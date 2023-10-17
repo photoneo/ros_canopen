@@ -22,11 +22,12 @@ template<typename Socket> class AsioDriver : public DriverInterface{
     boost::mutex socket_mutex_;
 
     void shutdown_internal(){
+        io_service_.stop();
         if(socket_.is_open()){
             socket_.cancel();
             socket_.close();
         }
-        io_service_.stop();
+
     }
 
 protected:
@@ -106,6 +107,9 @@ public:
 
             boost::system::error_code ec;
             io_service_.run(ec);
+
+            post_thread.join();
+
             setErrorCode(ec);
 
             setNotReady();

@@ -3,7 +3,7 @@ project(can_msgs)
 
 if(NOT CMAKE_CXX_STANDARD)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
-  set(CMAKE_CXX_STANDARD 14)
+  set(CMAKE_CXX_STANDARD 20)
 endif()
 
 find_package(catkin REQUIRED
